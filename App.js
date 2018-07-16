@@ -72,11 +72,9 @@ export default class App extends Component < Props > {
     render() {
         return (
             <View style={styles.container}>
-              <Text style={styles.welcome}>Imei</Text>
-              <Text style={styles.instructions}>imei1：{this.state.imei}</Text>
-              <Text style={styles.instructions}>imei2：{this.state.imei2}</Text>
+              <Text style={styles.welcome}>Imei：{this.state.imei}</Text>
               <Button 
-                title="Learn More"
+                title="获取IMEI号"
                 color="#000000"
                 onPress={this.onBtnClick.bind(this)}
               />

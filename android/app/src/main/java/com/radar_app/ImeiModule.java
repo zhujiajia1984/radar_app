@@ -35,14 +35,15 @@ public class ImeiModule extends ReactContextBaseJavaModule {
         try{
             String imei = "";
             String imei2 = "";
-            for(int i = 0; i < tm.getPhoneCount(); i++){
-                if(i == 0) {
-                    imei = tm.getDeviceId(0);
-                }
-                else{
-                    imei2 = tm.getDeviceId(1);
-                }
-            }
+//            for(int i = 0; i < tm.getPhoneCount(); i++){
+//                if(i == 0) {
+//                    imei = tm.getDeviceId(0);
+//                }
+//                else{
+//                    imei2 = tm.getDeviceId(1);
+//                }
+//            }
+            imei = tm.getDeviceId();
             successCb.invoke(imei, imei2);
         }catch(Exception e){
             errorCb.invoke("fail", "code");
