@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, PermissionsAndroid } from 'react-native';
 import ToastExample from './ToastExample';
 import Imei from './Imei';
+import SplashScreen from 'react-native-splash-screen';
 
 // const
 const instructions = Platform.select({
@@ -27,11 +28,18 @@ export default class App extends Component < Props > {
             imei2: ''
         };
     }
-    // click
-    onBtnClick() {
-        // ToastExample.show('Awesome', ToastExample.SHORT);
-        // Imei.getImei();
-        // 权限获取
+
+    // init
+    componentDidMount() {
+        // 请求权限
+        this.requestPower();
+
+        // 隐藏启动页（数据都初始化好之后）
+        SplashScreen.hide();
+    }
+
+    // 权限动态请求
+    requestPower() {
         this.requestCameraPermission().then(result => {
             let msg = "";
             if (result === PermissionsAndroid.RESULTS.GRANTED) {
@@ -49,7 +57,6 @@ export default class App extends Component < Props > {
                 ToastExample.show(msg, ToastExample.SHORT);
             }
         });
-
     }
 
     async requestCameraPermission() {
@@ -73,11 +80,6 @@ export default class App extends Component < Props > {
         return (
             <View style={styles.container}>
               <Text style={styles.welcome}>Imei：{this.state.imei}</Text>
-              <Button 
-                title="获取IMEI号"
-                color="#000000"
-                onPress={this.onBtnClick.bind(this)}
-              />
            </View>
         );
     }
